@@ -16,6 +16,10 @@ class IssuesController < ApplicationController
       @issues = []
     end
 
+    @unpaged_issues = @issues
+
+    @issues = Kaminari.paginate_array(@issues).page(params[:page]).per(25)
+
     @versions_for_select = versions.map {|v| v.name}
 
     @projects_for_select = [['EntryPoint', 'ENTRYPOINT'], ['DataBridge', 'OLS']]

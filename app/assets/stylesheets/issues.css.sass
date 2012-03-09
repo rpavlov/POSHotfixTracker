@@ -1,0 +1,49 @@
+@import "compass"
+
+body
+  padding: 0px
+  margin: 0px
+  font-family: Helvetica, Helvetica Neue, Arial
+  font-size: 16px
+
+  a
+    $link-color: darken(red, 10)
+    &:link
+      color: $link-color
+    &:visited
+      color: lighten(desaturate($link-color, 80), 20)
+    &:hover
+      color: lighten($link-color, 20)
+
+  #header
+    padding: 3px
+    background-color: #555
+    color: #fff
+    font-size: 8px
+    h1
+      margin: 3px 8px 3px 3px
+      display: inline
+
+  #issues
+    #nav
+      margin: 8px 0 11px 12px
+      select
+        padding: 8px
+      #toggle_list
+        margin-left: 1em
+        text-transform: capitalize
+    padding: 30px 50px 50px 50px
+    #paged
+      padding-top: 21px
+      .issue
+        background-color: #ddd
+        padding: 16px
+        margin-bottom: 3px
+        list-style: none
+        font-size: 0.8em
+        @include border-radius(11px)
+      .pagination
+        margin-top: 21px
+        font-size: 1.5em
+    #unpaged
+      display: none

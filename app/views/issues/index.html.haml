@@ -1,20 +1,36 @@
-=select_tag :selected_project, options_for_select(@projects_for_select, @selected_project)
-=select_tag :selected_version, options_for_select(@versions_for_select, @selected_version)
-%ui#issues
-  -for issue in @issues
-    %li.issue=issue.summary
+#header
+  %h1
+    Release Browser
+#issues
+  #nav
+    =select_tag :selected_project, options_for_select(@projects_for_select, @selected_project)
+    =select_tag :selected_version, options_for_select(@versions_for_select, @selected_version)
+    =link_to 'toggle paged / unpaged lists', '#', :id => 'toggle_list'
+  #paged
+    -for issue in @issues
+      .issue
+        .key=link_to issue.key, "http://ordersets.jira.com/browse/#{issue.key}"
+        .summary=issue.summary
+    =paginate @issues
 
-:javascript
-  $(function() {
-    $("#selected_version").change(function(e) {
-      var version = $(this).val();
-      var project = $("#selected_project").val();
-      window.location = window.location.pathname + "?selected_project=" + project + "&selected_version=" + version;
-    });
+  %ul#unpaged
+    -for issue in @unpaged_issues
+      %li.issue
+        =issue.summary
 
-    $("#selected_project").change(function(e) {
-      var project= $(this).val();
-      var version = $("#selected_version").val();
-      window.location = window.location.pathname + "?selected_project=" + project;
-    });
-  });
+:coffeescript
+  $ (e) ->
+
+    $("#toggle_list").click (e) ->
+      $("#issues #paged").toggle()
+      $("#issues #unpaged").toggle()
+
+    $("#selected_version").change (e) ->
+      version = $(this).val()
+      project = $("#selected_project").val()
+      window.location = window.location.pathname + "?selected_project=" + project + "&selected_version=" + version
+
+    $("#selected_project").change (e) ->
+      project = $(this).val()
+      version = $("#selected_version").val()
+      window.location = window.location.pathname + "?selected_project=" + project

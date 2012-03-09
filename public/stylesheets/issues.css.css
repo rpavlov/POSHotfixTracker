@@ -1,0 +1,25 @@
+/* line 3, ../../app/assets/stylesheets/issues.css.sass */
+body {
+  padding: 0;
+}
+
+/* line 6, ../../app/assets/stylesheets/issues.css.sass */
+#header {
+  padding: 8px;
+  -moz-box-shadow: 0px 0px 5px #333333;
+  -webkit-box-shadow: 0px 0px 5px #333333;
+  -o-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333;
+}
+
+/* line 10, ../../app/assets/stylesheets/issues.css.sass */
+#nav {
+  padding: 8px;
+  background-color: #dddddd;
+}
+
+/* line 15, ../../app/assets/stylesheets/issues.css.sass */
+#issues .issue {
+  padding: 8px;
+  list-style: none;
+}
